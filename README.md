@@ -10,9 +10,6 @@ Plan it. Sort it. Crush it. Dailish helps you organize tasks by category, priori
 - [x] Firestore Database Integration  
 - [x] Responsive Design  
 
-## 🖼️ Screenshots
-
-<img src="https://daytian.fun/tools/dailish/img/IMG_0404.png" width="250"> <img src="https://daytian.fun/tools/dailish/img/IMG_0396.png" width="250">
 
 ## 🧪 BUILT WITH
 
