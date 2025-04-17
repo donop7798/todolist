@@ -23,3 +23,34 @@ Plan it. Sort it. Crush it. Dailish helps you organize tasks by category, priori
 
 ## 🚀 Try it now
 [https://daytian.fun/tools/dailish](https://daytian.fun/tools/dailish)
+
+
+
+
+
+
+<img src="https://your-link.com/dailish-logo.png" width="200"/>
+
+# 🧱 DAILISH
+> The to-do list that actually looks *loud*.
+
+---
+
+## ⚡ FEATURES
+- ✅ **Categories** with custom colors
+- ✅ **Deadlines & Priorities** filterable
+- ✅ **Dark Mode** & 4 more themes
+- ✅ Export as PDF
+- ✅ Firestore Integration
+
+---
+
+## 🧪 BUILT WITH
+
+`HTML`  •  `CSS`  •  `JavaScript`  •  `Firebase`
+
+---
+
+## 🔗 TRY IT NOW  
+[dailish.fun/tools/todolist](https://dailish.fun/tools/todolist)
+
