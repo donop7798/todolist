@@ -13,7 +13,7 @@ Plan it. Sort it. Crush it. Dailish helps you organize tasks by category, priori
 ## 🖼️ Screenshots
 
 ![Screenshot 1](https://daytian.fun/tools/dailish/img/IMG_0404.png)
-![Screenshot 2]([[link-ke-gambar-lain.png](https://daytian.fun/tools/dailish/img/IMG_0396.png)])
+![Screenshot 2](https://daytian.fun/tools/dailish/img/IMG_0396.png)
 
 ## ⚙️ Tech Stack
 - HTML
