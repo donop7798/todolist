@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+   
+</head>
+<body>
+    <div class="landing-container">
+        <div class="app-logo">✓</div>
+        <h1 class="landing-title">To-Do List</h1>
+        <p class="landing-subtitle">Get things done with style</p>
+        
+        <div class="landing-buttons" id="landing-buttons">
+            <button class="landing-btn landing-btn-primary" id="create-list-btn">Create New List</button>
+            <button class="landing-btn landing-btn-secondary" id="view-list-btn">View My List</button>
+        </div>
+        
+        <!-- Create Username Form -->
+        <div class="username-form" id="create-username-form">
+            <div class="form-group">
+                <label for="new-username" class="form-label">Choose a username</label>
+                <input type="text" id="new-username" class="form-input" placeholder="Enter username">
+            </div>
+            <div class="form-actions">
+                <button class="form-btn form-btn-secondary" id="cancel-username-btn">Cancel</button>
+                <button class="form-btn form-btn-primary" id="save-username-btn">Continue</button>
+            </div>
+        </div>
+        
+        <!-- View Username Form -->
+        <div class="username-form" id="view-username-form">
+            <div class="form-group">
+                <label for="existing-username" class="form-label">Enter your username</label>
+                <input type="text" id="existing-username" class="form-input" placeholder="Your username">
+            </div>
+            <div class="form-actions">
+                <button class="form-btn form-btn-secondary" id="cancel-view-btn">Cancel</button>
+                <button class="form-btn form-btn-primary" id="load-tasks-btn">View Tasks</button>
+            </div>
+        </div>
+    </div>
+
+  <script type="module" src="js/index-main.js"></script>
+</body>
+</html>

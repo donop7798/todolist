@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="manifest" href="/tools/todolist/manifest.json">
+    <link rel="stylesheet" href="css/app.css">
+    <meta name="theme-color" content="#FF9AA2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+   
+</head>
+<body>
+    <div class="celebration-overlay" id="celebration-overlay"></div>
+    <div class="offline-login" id="offline-login" style="display: none;">
+        <p>Offline mode: Please connect to login.</p>
+        <button class="btn btn-primary" onclick="window.location.href='/tools/todolist/index.html'">Go to Login</button>
+    </div>
+    <div class="install-prompt" id="install-prompt">
+        <p>Add this app to your home screen for quick access!</p>
+        <button class="btn btn-secondary" id="dismiss-install">Got it</button>
+    </div>
+    <div class="install-confirm" id="install-confirm">
+        <p>Install now to your home screen?</p>
+        <div class="install-actions">
+            <button class="btn btn-primary" id="install-now">Add to Home Screen</button>
+            <button class="btn btn-secondary" id="install-later">Maybe Later</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="user-info">
+                <div class="user-avatar" id="user-avatar">U</div>
+                <div id="username-display">User</div>
+            </div>
+            <div class="header-controls">
+                <button class="search-btn" id="search-btn"><i class="fas fa-search"></i></button>
+                <button class="hamburger-menu" id="hamburger-menu"><i class="fas fa-bars"></i></button>
+                <button class="logout-btn" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+
+        <div class="title-bar">
+            <h1>My Tasks</h1>
+            <select id="sort-select" class="sort-select">
+                <option value="filter">Filter By</option>
+                <option value="deadline">Deadline</option>
+                <option value="priority">Priority</option>
+            </select>
+        </div>
+        
+        <div class="search-bar" id="search-bar">
+            <input type="text" id="search-input" class="search-input" placeholder="Search tasks...">
+        </div>
+        
+        <div class="filter-controls">
+            <button id="filter-all">All Tasks</button>
+            <div style="display: flex; align-items: center; gap: 0.6rem; flex: 1;">
+                <button id="filter-active" class="active">Active</button>
+                <select id="active-sort-select" class="sort-select" style="display: none;">
+                    <option value="default">Default</option>
+                    <option value="category">Active by Category</option>
+                </select>
+            </div>
+            <button id="filter-completed">Completed</button>
+        </div>
+        
+        <ul class="task-list" id="task-list"></ul>
+        
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <p>No tasks found</p>
+            <small>Click the + button to get started!</small>
+        </div>
+        
+        <div class="add-task" id="add-task-form">
+            <div class="form-group">
+                <label for="task-title" class="form-label">Task Title*</label>
+                <input type="text" id="task-title" class="form-input" placeholder="What needs to be done?">
+            </div>
+            
+            <div class="form-group">
+                <label for="task-brief" class="form-label">Brief Details (Optional)</label>
+                <textarea id="task-brief" class="form-input" placeholder="Any additional details about this task..." style="min-height: 80px;"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="task-category" class="form-label">Category</label>
+                <div class="form-row">
+                    <div class="form-group" style="position: relative;">
+                        <input type="text" id="task-category" class="form-input" placeholder="e.g., Work, Personal" autocomplete="off">
+                        <div id="category-suggestions" class="category-suggestions"></div>
+                    </div>
+                    <div class="icon-select-wrapper">
+                        <select id="task-category-icon" class="form-input category-icon-select" style="display: none;">
+                            <option value="fa-tag"></option>
+                            <option value="fa-briefcase"></option>
+                            <option value="fa-user"></option>
+                            <option value="fa-umbrella-beach"></option>
+                            <option value="fa-graduation-cap"></option>
+                            <option value="fa-home"></option>
+                            <option value="fa-shopping-cart"></option>
+                            <option value="fa-heartbeat"></option>
+                        </select>
+                        <div id="task-icon-display" class="icon-display">
+                            <i class="fas fa-tag"></i>
+                        </div>
+                        <div id="task-icon-options" class="icon-options" style="display: none;">
+                            <div class="icon-option" data-value="fa-tag"><i class="fas fa-tag"></i></div>
+                            <div class="icon-option" data-value="fa-briefcase"><i class="fas fa-briefcase"></i></div>
+                            <div class="icon-option" data-value="fa-user"><i class="fas fa-user"></i></div>
+                            <div class="icon-option" data-value="fa-umbrella-beach"><i class="fas fa-umbrella-beach"></i></div>
+                            <div class="icon-option" data-value="fa-graduation-cap"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="icon-option" data-value="fa-home"><i class="fas fa-home"></i></div>
+                            <div class="icon-option" data-value="fa-shopping-cart"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="icon-option" data-value="fa-heartbeat"><i class="fas fa-heartbeat"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="task-priority" class="form-label">Priority</label>
+                    <select id="task-priority" class="form-input">
+                        <option value="high">High</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="task-deadline" class="form-label">Deadline</label>
+                    <input type="date" id="task-deadline" class="form-input">
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button id="add-task-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Add Task</button>
+                <button id="cancel-task-btn" class="btn btn-secondary"><i class="fas fa-times"></i> Cancel</button>
+            </div>
+        </div>
+        
+        <div class="edit-task" id="edit-task-form">
+            <div class="form-group">
+                <label for="edit-task-title" class="form-label">Task Title*</label>
+                <input type="text" id="edit-task-title" class="form-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-task-brief" class="form-label">Brief Details (Optional)</label>
+                <textarea id="edit-task-brief" class="form-input" style="min-height: 80px;"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-task-category" class="form-label">Category</label>
+                <div class="form-row">
+                    <div class="form-group" style="position: relative;">
+                        <input type="text" id="edit-task-category" class="form-input" autocomplete="off">
+                        <div id="edit-category-suggestions" class="category-suggestions"></div>
+                    </div>
+                    <div class="icon-select-wrapper">
+                        <select id="edit-task-category-icon" class="form-input category-icon-select" style="display: none;">
+                            <option value="fa-tag"></option>
+                            <option value="fa-briefcase"></option>
+                            <option value="fa-user"></option>
+                            <option value="fa-umbrella-beach"></option>
+                            <option value="fa-graduation-cap"></option>
+                            <option value="fa-home"></option>
+                            <option value="fa-shopping-cart"></option>
+                            <option value="fa-heartbeat"></option>
+                        </select>
+                        <div id="edit-task-icon-display" class="icon-display">
+                            <i class="fas fa-tag"></i>
+                        </div>
+                        <div id="edit-task-icon-options" class="icon-options" style="display: none;">
+                            <div class="icon-option" data-value="fa-tag"><i class="fas fa-tag"></i></div>
+                            <div class="icon-option" data-value="fa-briefcase"><i class="fas fa-briefcase"></i></div>
+                            <div class="icon-option" data-value="fa-user"><i class="fas fa-user"></i></div>
+                            <div class="icon-option" data-value="fa-umbrella-beach"><i class="fas fa-umbrella-beach"></i></div>
+                            <div class="icon-option" data-value="fa-graduation-cap"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="icon-option" data-value="fa-home"><i class="fas fa-home"></i></div>
+                            <div class="icon-option" data-value="fa-shopping-cart"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="icon-option" data-value="fa-heartbeat"><i class="fas fa-heartbeat"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="edit-task-priority" class="form-label">Priority</label>
+                    <select id="edit-task-priority" class="form-input">
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-task-deadline" class="form-label">Deadline</label>
+                    <input type="date" id="edit-task-deadline" class="form-input">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-task-revision" class="form-label">Revision Note (Optional)</label>
+                <textarea id="edit-task-revision" class="form-input" placeholder="What changes are you making and why?" style="min-height: 80px;"></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button id="save-edit-btn" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+                <button id="cancel-edit-btn" class="btn btn-secondary"><i class="fas fa-times"></i> Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fab" id="fab"><i class="fas fa-plus"></i></div>
+
+    <div class="settings-panel" id="settings-panel">
+        <div class="settings-header">
+            <div class="settings-title">Settings</div>
+            <button class="close-settings" id="close-settings"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="settings-group">
+            <label class="settings-label">Theme</label>
+            <div class="theme-options">
+                <div class="theme-option theme-light" data-theme="light"></div>
+                <div class="theme-option theme-dark" data-theme="dark"></div>
+                <div class="theme-option theme-pink" data-theme="pink"></div>
+                <div class="theme-option theme-green" data-theme="green"></div>
+                <div class="theme-option theme-blue" data-theme="blue"></div>
+            </div>
+        </div>
+        
+        <div class="settings-group">
+            <label class="settings-label">Export Options</label>
+            <button class="btn btn-primary" id="export-all-txt" style="width: 100%; margin-top: 0.5rem;"><i class="fas fa-file-export"></i> Export All Tasks as TXT</button>
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration">
+        <div class="celebration-text">Nice job!</div>
+    </div>
+
+    <footer class="footer">
+        Created by AI
+    </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
