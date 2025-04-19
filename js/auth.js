@@ -22,7 +22,7 @@ export function handleAuth() {
             }
         } else {
             console.log("Redirecting to index.html due to missing username");
-            window.location.href = '/tools/dailish/index.html';
+            window.location.href = '/index.html';
         }
         return null;
     }
@@ -30,7 +30,7 @@ export function handleAuth() {
     const username = decodeUsername(encodedUsername);
     if (!username) {
         console.error("Invalid username, redirecting to index.html");
-        window.location.href = '/tools/dailish/index.html';
+        window.location.href = '/index.html';
         return null;
     }
 
@@ -45,7 +45,7 @@ export function setupLogout() {
             console.log("Logging out...");
             sessionStorage.removeItem('todo_username');
             localStorage.removeItem('todo_username_fallback');
-            window.location.href = '/tools/dailish/index.html';
+            window.location.href = '/index.html';
         });
     } else {
         console.error("Logout button not found");
