@@ -20,7 +20,7 @@ export async function deleteAccount(encodedUsername) {
 
         console.log("Account deleted successfully");
         alert('Your account has been deleted.');
-        window.location.href = '/tools/todolist/index.html';
+        window.location.href = '/index.html';
     } catch (error) {
         console.error("Error deleting account:", error);
         alert('Failed to delete account. Please try again.');
