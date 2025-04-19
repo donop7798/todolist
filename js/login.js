@@ -76,7 +76,7 @@ export function setupLogin() {
 
             sessionStorage.setItem('todo_username', encodedUsername);
             localStorage.setItem('todo_username_fallback', encodedUsername);
-            window.location.href = '/tools/dailish/app.html';
+            window.location.href = 'app.html';
         } catch (error) {
             console.error("Error creating user: ", error);
             alert('An error occurred. Please try again.');
@@ -102,7 +102,7 @@ export function setupLogin() {
 
             sessionStorage.setItem('todo_username', encodedUsername);
             localStorage.setItem('todo_username_fallback', encodedUsername);
-            window.location.href = '/tools/dailish/app.html';
+            window.location.href = 'app.html';
         } catch (error) {
             console.error("Error loading user: ", error);
             alert('An error occurred. Please try again.');
